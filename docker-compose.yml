@@ -5,7 +5,9 @@ services:
     depends_on:
       - db
     command: ["bin/start_cf_phx.sh"]
-    image: cloudfirellc/cloudfire:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.cf-http
     environment:
       DATABASE_URL: ecto://postgres:postgres@db/cloudfire
 
@@ -23,7 +25,9 @@ services:
     depends_on:
        - db
     command: ["system_engine/bin/system_engine", "start"]
-    image: cloudfirellc/cloudfire:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.cf-wg
     environment:
       DATABASE_URL: ecto://postgres:postgres@db/cloudfire
 

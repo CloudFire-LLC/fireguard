@@ -1,0 +1,6 @@
+version: "3.3"
+services:
+  cf-phx:
+    image: cloudfire-llc/cloudfire:latest
+  system-engine:
+    image: cloudfire-llc/cloudfire:latest

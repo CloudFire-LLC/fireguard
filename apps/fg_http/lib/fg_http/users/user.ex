@@ -81,7 +81,7 @@ defmodule FgHttp.Users.User do
   end
 
   # Only email being updated
-  def update_changeset(user, %{"email" => _email} = attrs) do
+  def update_changeset(user, attrs) do
     user
     |> cast(attrs, [:email])
     |> validate_required([:email])

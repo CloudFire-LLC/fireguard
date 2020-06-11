@@ -29,7 +29,7 @@ defmodule FgHttpWeb.SessionControllerTest do
       test_conn = post(conn, Routes.session_path(conn, :create), session: @valid_attrs)
 
       assert redirected_to(test_conn) == Routes.device_path(test_conn, :index)
-      assert get_flash(test_conn, :info) == "Session created successfully"
+      assert get_flash(test_conn, :info) == "Signed in successfully."
       assert get_session(test_conn, :user_id) == user.id
     end
 

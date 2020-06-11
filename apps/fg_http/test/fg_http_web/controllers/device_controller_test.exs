@@ -3,7 +3,7 @@ defmodule FgHttpWeb.DeviceControllerTest do
 
   alias FgHttp.Fixtures
 
-  @create_attrs %{public_key: "foobar"}
+  @create_attrs %{name: "test", public_key: "test"}
   @update_attrs %{name: "some updated name"}
   @invalid_attrs %{public_key: nil}
 
@@ -23,7 +23,8 @@ defmodule FgHttpWeb.DeviceControllerTest do
 
   describe "create device" do
     test "redirects when data is valid", %{authed_conn: conn} do
-      test_conn = post(conn, Routes.device_path(conn, :create), device: @create_attrs)
+      device = Map.merge(@create_attrs, %{user_id: Fixtures.user().id})
+      test_conn = post(conn, Routes.device_path(conn, :create), device: device)
       assert redirected_to(test_conn) == Routes.device_path(test_conn, :index)
     end
 

@@ -1,3 +1,4 @@
+<h3>Edit Account</h3>
 <%= form_for @changeset, Routes.user_path(@conn, :update), fn f -> %>
   <%= if @changeset.action do %>
     <div>
@@ -5,30 +6,35 @@
     </div>
   <% end %>
 
-  <fieldset id="edit_account" class="ba b--transparent ph0 mh0">
-    <legend class="f4 fw6 ph0 mh0">Edit Account</legend>
+  <fieldset id="edit_email">
+    <legend>Edit Email</legend>
     <div class="mt3">
-      <%= label(f, :email, class: "db fw6 lh-copy f6") %>
-      <%= text_input(f, :email, class: "pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100") %>
+      <%= label f, :email %>
+      <%= text_input f, :email %>
       <%= error_tag f, :email %>
     </div>
+  </fieldset>
+
+  <fieldset id="edit_password">
+    <legend>Change Password</legend>
+    <span class="help">Enter your current password to set a new password.</span>
     <div class="mv3">
-      <%= label(f, :password, class: "db fw6 lh-copy f6") %>
-      <%= password_input(f, :password, class: "pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100") %>
+      <%= label f, :current_password %>
+      <%= password_input f, :current_password %>
+      <%= error_tag f, :current_password %>
+    </div>
+    <div class="mv3">
+      <%= label f, :password, "New Password" %>
+      <%= password_input f, :password %>
       <%= error_tag f, :password %>
     </div>
     <div class="mv3">
-      <%= label(f, :password_confirmation, class: "db fw6 lh-copy f6") %>
-      <%= password_input(f, :password_confirmation, class: "pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100") %>
+      <%= label f, :password_confirmation, "New Password Confirmation" %>
+      <%= password_input f, :password_confirmation %>
       <%= error_tag f, :password_confirmation %>
-    </div>
-    <div class="mv3">
-      <%= label(f, :current_password, class: "db fw6 lh-copy f6") %>
-      <%= password_input(f, :current_password, class: "pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100") %>
-      <%= error_tag f, :current_password %>
     </div>
   </fieldset>
   <div>
-    <%= submit "Save", class: "b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" %>
+    <%= submit "Save" %>
   </div>
 <% end %>

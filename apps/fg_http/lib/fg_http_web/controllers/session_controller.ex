@@ -11,7 +11,7 @@ defmodule FgHttpWeb.SessionController do
 
   # GET /sessions/new
   def new(conn, _params) do
-    render(conn, "new.html")
+    render(conn, "new.html", changeset: new_changeset())
   end
 
   # POST /sessions
@@ -24,7 +24,7 @@ defmodule FgHttpWeb.SessionController do
             |> clear_session()
             |> put_session(:user_id, session.id)
             |> assign(:session, session)
-            |> put_flash(:info, "Session created successfully")
+            |> put_flash(:info, "Signed in successfully.")
             |> redirect(to: Routes.device_path(conn, :index))
 
           {:error, changeset} ->
@@ -38,7 +38,7 @@ defmodule FgHttpWeb.SessionController do
       nil ->
         conn
         |> put_flash(:error, "Email not found.")
-        |> render("new.html")
+        |> render("new.html", changeset: new_changeset())
     end
   end
 
@@ -48,5 +48,9 @@ defmodule FgHttpWeb.SessionController do
     |> clear_session()
     |> put_flash(:info, "Signed out successfully.")
     |> redirect(to: "/")
+  end
+
+  defp new_changeset do
+    Sessions.change_session(%Session{})
   end
 end

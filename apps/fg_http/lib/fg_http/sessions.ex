@@ -44,4 +44,8 @@ defmodule FgHttp.Sessions do
     |> Session.create_changeset(attrs)
     |> Repo.update()
   end
+
+  def change_session(%Session{} = session) do
+    Session.changeset(session, %{})
+  end
 end

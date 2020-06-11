@@ -1,29 +1,28 @@
-<main class="pa4 black-80">
-  <%= form_for(@conn, Routes.session_path(@conn, :create), [as: :session, class: "measure center"], fn f -> %>
-    <%= if f.errors do %>
-      <!-- Errors -->
-    <% end %>
+<%= form_for @conn, Routes.session_path(@conn, :create), [as: :session, class: "measure center"], fn f -> %>
+  <%= if @changeset.action do %>
+    <div>
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
 
-    <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
-      <legend class="f4 fw6 ph0 mh0">Sign In</legend>
-      <div class="mt3">
-        <%= label(:session_user, :email, class: "db fw6 lh-copy f6") %>
-        <%= text_input(f, :email, class: "pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100") %>
-        <%= error_tag f, :email %>
-      </div>
-      <div class="mv3">
-        <%= label(:session_user, :password, class: "db fw6 lh-copy f6") %>
-        <%= password_input(f, :password, class: "pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100") %>
-        <%= error_tag f, :password %>
-      </div>
-      <label class="pa0 ma0 lh-copy f6 pointer"><input type="checkbox"> Remember me</label>
-    </fieldset>
-    <div class="">
-      <%= submit "Sign in", class: "b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" %>
+  <fieldset id="sign_up" class="">
+    <legend class="f4 fw6 ph0 mh0">Sign In</legend>
+    <div class="mt3">
+      <%= label :session_user, :email %>
+      <%= text_input f, :email %>
+      <%= error_tag f, :email %>
     </div>
-    <div class="lh-copy mt3">
-      <%= link("Sign up", to: Routes.user_path(@conn, :new), class: "f6 link dim black fl") %>
-      <%= link("Forgot your password?", to: Routes.password_reset_path(@conn, :new), class: "f6 link dim black fr") %>
+    <div class="mv3">
+      <%= label :session_user, :password %>
+      <%= password_input f, :password %>
+      <%= error_tag f, :password %>
     </div>
-  <% end) %>
-</main>
+  </fieldset>
+  <div>
+    <%= submit "Sign in" %>
+  </div>
+  <div class="lh-copy mt3">
+    <%= link "Sign up", to: Routes.user_path(@conn, :new), class: "f6 link dim black fl" %>
+    <%= link "Forgot your password?", to: Routes.password_reset_path(@conn, :new), class: "f6 link dim black fr" %>
+  </div>
+<% end %>

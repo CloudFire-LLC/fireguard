@@ -1,0 +1,59 @@
+/* Main styles */
+
+@mixin input-text {
+  @extend .pa2;
+  @extend .input-reset;
+  @extend .ba;
+  @extend .bg-transparent;
+  @extend .hover-bg-black;
+  @extend .hover-white;
+  @extend .w-100;
+}
+
+fieldset {
+  @extend .ba;
+  @extend .b--transparent;
+  @extend .ph0;
+  @extend .mh0;
+}
+
+legend {
+  @extend .f4;
+  @extend .fw6;
+  @extend .ph0;
+  @extend .mh0;
+}
+
+form {
+  @extend .measure;
+  @extend .center;
+}
+
+label {
+  @extend .db;
+  @extend .fw6;
+  @extend .lh-copy;
+  @extend .f6;
+}
+
+input[type=text] {
+  @include input-text;
+}
+
+input[type=password] {
+  @include input-text;
+}
+
+input[type=submit] {
+  @extend .b;
+  @extend .ph3;
+  @extend .pv2;
+  @extend .input-reset;
+  @extend .ba;
+  @extend .b--black;
+  @extend .bg-transparent;
+  @extend .grow;
+  @extend .pointer;
+  @extend .f6;
+  @extend .dib;
+}

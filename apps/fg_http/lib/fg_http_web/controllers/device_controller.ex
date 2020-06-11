@@ -14,20 +14,17 @@ defmodule FgHttpWeb.DeviceController do
   end
 
   def new(conn, _params) do
-    changeset = Devices.change_device(%Device{})
+    device = %Device{
+      user_id: conn.assigns.session.id,
+      name: "Auto-generated at #{DateTime.utc_now()}"
+    }
+
+    changeset = Devices.change_device(device)
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"device" => %{"public_key" => _public_key} = device_params}) do
-    our_params = %{
-      "user_id" => conn.assigns.session.id,
-      "name" => "Default",
-      "ifname" => "wg0"
-    }
-
-    all_params = Map.merge(device_params, our_params)
-
-    case Devices.create_device(all_params) do
+    case Devices.create_device(device_params) do
       {:ok, _device} ->
         redirect(conn, to: Routes.device_path(conn, :index))
 

@@ -32,12 +32,8 @@ Endpoint = <%= Application.fetch_env!(:fg_http, :vpn_endpoint) %>
       Device Public Key: <%= @device.public_key %>
     </p>
     <p>
-      <%# XXX: Use the public key sent by the actual device and not the one here %>
-      <%=
-        link("This looks good, verify and continue. ->",
-        to: Routes.device_path(@socket, :create, "device[public_key]": @device.public_key),
-        method: :post)
-      %>
+      <% # XXX: Use the device held in the socket instead of params in the URL %>
+      <%= create_device_link(@socket, @device) %>
     </p>
     <p>
       <%=

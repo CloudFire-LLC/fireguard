@@ -74,11 +74,12 @@ jobs:
           distro: ubuntu18.04
           githubToken: ${{ github.token }}
           run:
-            - .ci/install_runtimes.sh
             - .ci/build_release.sh
 
       # amd64 build
-      - uses:
+      - if: ${{ matrix.arch == 'amd64' }}
+        run:
+        - .ci/build_release.sh
 
   build:
     needs: unit-integration-test
@@ -92,7 +93,7 @@ jobs:
       - name: Install runtimes
         run: .ci/install_runtimes.sh
       - name: Build release
-        env:
+       env:
           MIX_ENV: prod
         run: .ci/build_release.sh
       - name: Build deb

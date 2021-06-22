@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :fg_http, FgHttp.Repo,
   username: "fireguard",
-  password: "postgres",
+  password: "fireguard",
   database: "fireguard_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
@@ -27,7 +27,8 @@ config :fg_http, FgHttpWeb.Endpoint,
       "node_modules/webpack/bin/webpack.js",
       "--mode",
       "development",
-      "--watch-stdin",
+      "--watch",
+      "--watch-options-stdin",
       cd: Path.expand("../apps/fg_http/assets", __DIR__)
     ]
   ]

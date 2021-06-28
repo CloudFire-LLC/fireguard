@@ -23,8 +23,6 @@ module.exports = (env, options) => ({
     filename: 'app.js',
     publicPath: '/js/'
   },
-  target: 'node14.17',
-  devtool: options.mode === 'development' ? 'source-map' : undefined,
   module: {
     rules: [
       {

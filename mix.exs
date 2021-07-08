@@ -26,6 +26,7 @@ defmodule CloudfireUmbrella.MixProject do
           # include_executables_for: [:unix],
           validate_compile_env: false,
           applications: [
+            cf_common: :permanent,
             cf_http: :permanent,
             cf_wall: :permanent,
             cf_vpn: :permanent

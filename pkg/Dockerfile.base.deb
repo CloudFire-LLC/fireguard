@@ -37,7 +37,5 @@ RUN git clone --depth 1 https://github.com/asdf-vm/asdf.git $HOME/.asdf
 ENV PATH="/root/.asdf/bin:/root/.asdf/shims:${PATH}"
 RUN echo 'PATH="/root/.asdf/bin:/root/.asdf/shims:${PATH}"' >> /etc/environment
 COPY .tool-versions .tool-versions
-RUN asdf plugin-add nodejs
-RUN asdf plugin-add erlang
-RUN asdf plugin-add elixir
-RUN asdf install
+COPY pkg/asdf.sh asdf.sh
+RUN . asdf.sh
